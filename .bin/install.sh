@@ -7,10 +7,53 @@ helpmsg() {
 }
 
 link_dir() {
+	local src="$1"
+	local dest="$2"
+
+	if [[ -e "$src" ]];then
+		if [[ -L "$dest" ]];then
+			rm -f "$dest"
+		elif [[ -e "$dest" ]];then
+			mv "$dest" "$HOME/.dotbackup/"
+		fi
+
+		mkdir -p "$(dirname "$dest")"
+		ln -snf "$src" "$dest"
+		echo "Linked: $src -> $dest"
+	fi
+}
+
+link_dots() {
 	command echo "buckup old dotfiles..."
 	if [ ! -d "$HOME/.dotbackup" ];then
 		command echo "$HOME/.dotbackup not found. Auto Make it"
 		command mkdir "$HOME/.dotbackup"
+	fi
+
+	local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+	local dot_dir=$(dirname ${script_dir})
+
+	if [[ "$HOME" != "$dot_dir" ]];then
+		local config_file="$script_dir/link_config.txt"
+
+		if [[ -f "$config_file" ]];then
+			while IFS=, read -r src dest; do
+				src="$dot_dir/$src"
+				dest="$HOME/$dest"
+				link_dir "$src" "$dest"
+			done < "$config_file"
+		fi
+
+		for f in $dot_dir/.??*;do
+			[[ `basename $f` == ".git" ]] && continue
+			[[ `basename $f` == ".bin" ]] && continue
+
+			if ! grep -q "^$(basename $f),""$config_file" 2>/dev/null;then
+				link_dir "$f" "$HOME/$(basename $f)"
+			fi
+		done
+	else
+		command echo "same install src dest"
 	fi
 }
 
@@ -29,6 +72,6 @@ while [ $# -gt 0 ];do
 	shift
 done
 
-link_dir
+link_dots
 command echo -e "\e[1;36m Install completed!!!! \e[m"
 
