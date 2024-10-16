@@ -3,7 +3,7 @@ set -ue
 
 backup() {
 	local dest="$dest"
-	if [ -f "$dest" ];then
+	if [ -e "$dest" ];then
 		echo "backup $dest"
 		mv "$dest" "${dest}.dotbackup-$(date +%Y%m%d-%h%M%S)"
 		return 0
@@ -23,11 +23,15 @@ link_dir() {
 	src=$(realpath "$src")
 
 	echo "Make symbolic link: $src -> $dest"
+	
+	if [[ $ENVIRONMENT == "windows" ]];then
+		export MSYS=winsymlinks:nativestrict
+	fi
 
 	if [[ -e "$src" ]];then
 		if [[ -L "$dest" ]];then
 			rm -f "$dest"
-		elif [[ -f "$dest" ]];then
+		elif [[ -e "$dest" ]];then
 			backup $dest
 		fi
 
