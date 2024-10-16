@@ -4,6 +4,7 @@ set -ue
 backup() {
 	local dest="$dest"
 	if [ -f "$dest" ];then
+		echo "backup $dest"
 		mv "$dest" "${dest}.dotbackup-$(date +%Y%m%d-%h%M%S)"
 		return 0
 	fi
@@ -20,7 +21,6 @@ link_dir() {
 	fi
 
 	src=$(realpath "$src")
-	dest=$(realpath "$dest")
 
 	echo "Make symbolic link: $src -> $dest"
 
