@@ -6,23 +6,6 @@ helpmsg() {
 	command echo ""
 }
 
-link_dir() {
-	local src="$1"
-	local dest="$2"
-
-	if [[ -e "$src" ]];then
-		if [[ -L "$dest" ]];then
-			rm -f "$dest"
-		elif [[ -e "$dest" ]];then
-			mv "$dest" "$HOME/.dotbackup/"
-		fi
-
-		mkdir -p "$(dirname "$dest")"
-		ln -snf "$src" "$dest"
-		echo "Linked: $src -> $dest"
-	fi
-}
-
 link_dots() {
 	command echo "buckup old dotfiles..."
 	if [ ! -d "$HOME/.dotbackup" ];then

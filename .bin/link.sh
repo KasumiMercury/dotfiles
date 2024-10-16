@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -ue
+
+backup() {
+	local dest="$dest"
+	if [ -f "$dest" ];then
+		mv "$dest" "${dest}.dotbackup-$(date +%Y%m%d-%h%M%S)"
+		return 0
+	fi
+	return 1
+}
+
+link_dir() {
+	local src="$1"
+	local dest="$2"
+
+	if [ -z "$src" ] || [ -z "$dest" ]; then
+		echo "Error: Missing required argument for link_dir"
+		return 1
+	fi
+
+	src=$(realpath "$src")
+	dest=$(realpath "$dest")
+
+	echo "Make symbolic link: $src -> $dest"
+
+	if [[ -e "$src" ]];then
+		if [[ -L "$dest" ]];then
+			rm -f "$dest"
+		elif [[ -f "$dest" ]];then
+			backup($dest)
+		fi
+
+		mkdir -p "$(dirname "$dest")"
+		ln -snf "$src" "$dest"
+		echo "Linked: $src -> $dest"
+	fi
+}
+
