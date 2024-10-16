@@ -11,6 +11,7 @@ DIR_NAME=$(basename $SCRIPT_DIR)
 SRC_DIR=$SCRIPT_DIR
 case "$ENVIRONMENT" in
 	"windows")
+		DEST_DIR="$HOME/AppData/Local/nvim"
 		;;
 	"linux")
 		DEST_DIR="$HOME/.config/nvim"
