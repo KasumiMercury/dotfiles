@@ -6,38 +6,45 @@ helpmsg() {
 	command echo ""
 }
 
-link_dots() {
-	command echo "buckup old dotfiles..."
-	if [ ! -d "$HOME/.dotbackup" ];then
-		command echo "$HOME/.dotbackup not found. Auto Make it"
-		command mkdir "$HOME/.dotbackup"
+detect_environment() {
+	if [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "cygwin" ]];then
+		echo "windows"
+	else
+		echo "linux"
 	fi
+}
 
+link_dots() {
 	local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 	local dot_dir=$(dirname ${script_dir})
 
-	if [[ "$HOME" != "$dot_dir" ]];then
-		local config_file="$script_dir/link_config.txt"
+	ENVIRONMENT=$(detect_environment)
+	echo "Environment: $ENVIRONMENT"
+	
+	read -p "Is correct? (y/N): " answer
 
-		if [[ -f "$config_file" ]];then
-			while IFS=, read -r src dest; do
-				src="$dot_dir/$src"
-				dest="$HOME/$dest"
-				link_dir "$src" "$dest"
-			done < "$config_file"
-		fi
-
-		for f in $dot_dir/.??*;do
-			[[ `basename $f` == ".git" ]] && continue
-			[[ `basename $f` == ".bin" ]] && continue
-
-			if ! grep -q "^$(basename $f),""$config_file" 2>/dev/null;then
-				link_dir "$f" "$HOME/$(basename $f)"
-			fi
-		done
-	else
-		command echo "same install src dest"
+	if [[ "${answer,,}" != "y" ]];then
+		return 1
 	fi
+
+	for dir in $dot_dir/*/;do
+		echo "=== run $dir install ==="
+		[[ `basename $dir` == ".git" ]] && continue
+		[[ `basename $dir` == ".bin" ]] && continue
+
+		if [ -f "$dir/install.sh" ];then
+			cd "$dir"
+
+			source "./install.sh"
+
+			cd ..
+			
+			echo "=== completed $dir install ==="
+			echo
+		else
+			echo "Not found install.sh in $dir"
+		fi
+	done
 }
 
 while [ $# -gt 0 ];do
