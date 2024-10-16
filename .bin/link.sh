@@ -28,7 +28,7 @@ link_dir() {
 		if [[ -L "$dest" ]];then
 			rm -f "$dest"
 		elif [[ -f "$dest" ]];then
-			backup($dest)
+			backup $dest
 		fi
 
 		mkdir -p "$(dirname "$dest")"
