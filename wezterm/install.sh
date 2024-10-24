@@ -14,6 +14,7 @@ case "$ENVIRONMENT" in
 		DEST_DIR="$HOME/.wezterm.lua"
 		;;
 	"linux")
+		exit 0
 		;;
 	*)
 		echo "undefined: $ENVIRONMENT"
