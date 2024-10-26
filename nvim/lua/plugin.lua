@@ -1,5 +1,6 @@
 require('lazy').setup({
 	{ 'EdenEast/nightfox.nvim',           lazy = false },
+	{ 'lambdalisue/fern.vim' },
 	{ 'nvim-treesitter/nvim-treesitter',  build = ':TSUpdate' },
 
 	{ 'neovim/nvim-lspconfig' },
