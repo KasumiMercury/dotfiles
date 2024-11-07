@@ -1,0 +1,130 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+inoremap jk <ESC>
+
+"let mapleader = "\<Space>"
+"let mapleader = ",<Space>"
+let mapleader = " "
+
+set number
+
+set clipboard+=unnamed
+set ideajoin
+
+set nocompatible
+set shellslash
+
+set laststatus=2
+
+set nofoldenable
+set foldmethod=indent
+set foldopen=all
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+"Plug 'tpope/vim-commentary'
+"gcc gc
+set commentary
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+map <leader>fo <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+map <leader>bp <Action>(ToggleLineBreakpoint)
+
+" 折りたたみ関連
+set nofoldenable
+set foldmethod=indent
+set foldopen=all  " fold内に移動すれば自動で開く
+" set foldclose=all  " fold外に移動しfoldlevelより深ければ閉じる
+set foldlevel=1   " 折りたたみの具合
+set foldnestmax=2  " 最大折りたたみ深度$
+set foldcolumn=2  " 左側に折りたたみガイド表示$
+
+" 定義移動 gd
+nmap gi <Action>(GotoImplementation)
+
+" gitジャンプ
+nmap [c <Action>(VcsShowPrevChangeMarker)
+nmap ]c <Action>(VcsShowNextChangeMarker)
+
+" エラージャンプ
+nmap [q <Action>(GotoPreviousError)
+nmap ]q <Action>(GotoNextError)
+
+nmap <leader>fi <Action>(Find)
+nmap <leader>fa <Action>(GotoAction)
+nmap <leader>ff <Action>(SearchEverywhere)
+nmap <leader>fw <Action>(FindInPath)
+nmap <leader>cc <Action>(CloseContent)
+nmap <leader>bc <Action>(CloseAllEditorsButActive)
+nmap <leader>bC <Action>(CloseAllEditors)
+nmap <leader>e <Action>(ActivateProjectToolWindow)
+nmap <leader>la <Action>(ShowIntentionActions)
+nmap <leader>ls <Action>(ActivateStructureToolWindow)
+nmap <leader>lr <Action>(RenameElement)
+nmap <leader>o <Action>(EditorEscape)
+nmap <leader>th <Action>(ActivateTerminalToolWindow)
+nmap <leader>q <Action>(HideAllWindows)
+nmap <leader>/ <Action>(CommentByLineComment)
+nmap <leader>bb <Action>(ToggleBookmark)
+
+"画面分割
+nmap <leader>ss <Action>(SplitHorizontally)
+nmap <leader>sv <Action>(SplitVertically)
+
+" ホバー
+nmap <Leader>k <Action>(ShowHoverInfo)
+
+nmap [b <Action>(PreviousTab)
+nmap ]b <Action>(NextTab)
+
+nmap <C-l> <Action>(NextSplitter)
+nmap <C-h> <Action>(PrevSplitter)
+
+" plugin
+set surround
+
+set easymotion
+map s <Plug>(easymotion-s2)
+map <leader>w <Plug>(easymotion-bd-w)  " word単位移動
+map <leader>s <Plug>(easymotion-bd-f2) " 検索移動
+map <leader>l <Plug>(easymotion-bd-jk) " 行移動
+
+set multiple-cursors
+" Ctrl+kで発動
+map <C-k> <A-n>
+
+set ReplaceWithRegister
+" _で発動. ダブルクォーテーションの中を置換したいなら _i"
+map _ gr
+
+"ia aa
+set argtextobj
+"ie ae
+set textobj-entire
+
+set NERDTree
