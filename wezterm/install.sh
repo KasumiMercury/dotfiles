@@ -9,12 +9,15 @@ source "$DOT_DIR/.bin/link.sh"
 DIR_NAME=$(basename $SCRIPT_DIR)
 
 SRC_DIR=$SCRIPT_DIR/.wezterm.lua
+
+IS_INSTALL=1
+
 case "$ENVIRONMENT" in
 	"windows")
 		DEST_DIR="$HOME/.wezterm.lua"
 		;;
 	"linux")
-		exit 0
+		IS_INSTALL=0
 		;;
 	*)
 		echo "undefined: $ENVIRONMENT"
@@ -22,12 +25,13 @@ case "$ENVIRONMENT" in
 		;;
 esac
 
-echo "[$DIR_NAME] install"
+if $IS_INSTALL==1; then
+	echo "[$DIR_NAME] install"
 
-if ! link_dir "$SRC_DIR" "$DEST_DIR"; then
-	echo "failed to create symbolic link"
-	exit 1
+	if ! link_dir "$SRC_DIR" "$DEST_DIR"; then
+		echo "failed to create symbolic link"
+		exit 1
+	fi
+
+	echo "[$DIR_NAME] install completed"
 fi
-
-echo "[$DIR_NAME] install completed"
-
