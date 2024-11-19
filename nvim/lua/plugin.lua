@@ -1,4 +1,5 @@
 require('lazy').setup({
+	'JoosepAlviste/nvim-ts-context-commentstring',
 	{ 'EdenEast/nightfox.nvim',           lazy = false },
 	{ 'lambdalisue/fern.vim' },
 	{ 'nvim-treesitter/nvim-treesitter',  build = ':TSUpdate' },
@@ -29,6 +30,9 @@ require('lazy').setup({
 		'nvim-telescope/telescope.nvim',
 		branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' }
+	},
+	{
+		'numToStr/Comment.nvim'
 	}
 })
 
@@ -122,3 +126,8 @@ cmp.setup({
 require('ibl').setup()
 
 vim.cmd('colorscheme nightfox')
+
+require('Comment').setup {
+	pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+}
+
