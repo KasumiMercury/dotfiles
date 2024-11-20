@@ -35,20 +35,19 @@ require('lazy').setup({
 	{
 		'numtostr/comment.nvim',
 		config = function()
-
-		require('Comment').setup {
-			pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-		}
-	end,
+			require('Comment').setup {
+				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+			}
+		end,
 	},
 	{
-	  'stevearc/oil.nvim',
-	  ---@module 'oil'
-	  ---@type oil.setupopts
-	  opts = {},
-	  -- optional dependencies
-	  dependencies = { { "echasnovski/mini.icons", opts = {} } },
-	  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+		'stevearc/oil.nvim',
+		---@module 'oil'
+		---@type oil.setupopts
+		opts = {},
+		-- optional dependencies
+		dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 	}
 })
 
@@ -107,11 +106,11 @@ vim.api.nvim_create_autocmd('lspattach', {
 
 require('mason').setup()
 require('mason-lspconfig').setup()
--- require('mason-lspconfig').setup_handlers {
--- 	function(server_name)
--- 		require('lspconfig')[server_name].setup {}
--- 	end
--- }
+require('mason-lspconfig').setup_handlers {
+	function(server_name)
+		require('lspconfig')[server_name].setup {}
+	end
+}
 
 vim.opt.completeopt = 'menu,menuone,noselect'
 
@@ -142,5 +141,3 @@ cmp.setup({
 require('ibl').setup()
 
 vim.cmd('colorscheme nightfox')
-
-
