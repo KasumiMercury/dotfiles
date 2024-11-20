@@ -1,17 +1,16 @@
 require('lazy').setup({
-	{ 'EdenEast/nightfox.nvim',           lazy = false },
+	{ 'edeneast/nightfox.nvim',           lazy = false },
 	{ 'lambdalisue/fern.vim' },
 	{ 'nvim-treesitter/nvim-treesitter',  build = ':TSUpdate' },
 
-	{ 'neovim/nvim-lspconfig' },
 	{ 'williamboman/mason.nvim' },
 	{ 'williamboman/mason-lspconfig.nvim' },
-
+	{ 'neovim/nvim-lspconfig' },
 	{ 'hrsh7th/nvim-cmp' },
 	{ 'hrsh7th/cmp-nvim-lsp' },
 	{ 'hrsh7th/cmp-buffer' },
 
-	{ 'L3MON4D3/LuaSnip' },
+	{ 'l3mon4d3/luasnip' },
 	{ 'saadparwaiz1/cmp_luasnip' },
 
 	{
@@ -31,12 +30,30 @@ require('lazy').setup({
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
 	{
-		'numToStr/Comment.nvim'
+		'joosepalviste/nvim-ts-context-commentstring',
+	},
+	{
+		'numtostr/comment.nvim',
+		config = function()
+
+		require('Comment').setup {
+			pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+		}
+	end,
+	},
+	{
+	  'stevearc/oil.nvim',
+	  ---@module 'oil'
+	  ---@type oil.setupopts
+	  opts = {},
+	  -- optional dependencies
+	  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+	  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 	}
 })
 
 vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwplugin = 1
 vim.opt.termguicolors = true
 
 local function my_on_attach(bufnr)
@@ -50,8 +67,8 @@ local function my_on_attach(bufnr)
 	api.config.mappings.default_on_attach(bufnr)
 
 	-- custom mappings
-	-- vim.keymap.set('n', '<C-t>', api.tree.change_root_to_parent,        opts('Up'))
-	-- vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
+	-- vim.keymap.set('n', '<c-t>', api.tree.change_root_to_parent,        opts('up'))
+	-- vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('help'))
 end
 
 -- pass to setup along with your other options
@@ -106,13 +123,13 @@ cmp.setup({
 		end,
 	},
 	mapping = cmp.mapping.preset.insert({
-		['<C-p>'] = cmp.mapping.select_prev_item(),
-		['<C-n>'] = cmp.mapping.select_next_item(),
-		['<C-d>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-		['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.close(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		['<c-p>'] = cmp.mapping.select_prev_item(),
+		['<c-n>'] = cmp.mapping.select_next_item(),
+		['<c-d>'] = cmp.mapping.scroll_docs(-4),
+		['<c-f>'] = cmp.mapping.scroll_docs(4),
+		['<c-space>'] = cmp.mapping.complete(),
+		['<c-e>'] = cmp.mapping.close(),
+		['<cr>'] = cmp.mapping.confirm({ select = true }),
 	}),
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
