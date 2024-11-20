@@ -1,5 +1,4 @@
 require('lazy').setup({
-	'JoosepAlviste/nvim-ts-context-commentstring',
 	{ 'EdenEast/nightfox.nvim',           lazy = false },
 	{ 'lambdalisue/fern.vim' },
 	{ 'nvim-treesitter/nvim-treesitter',  build = ':TSUpdate' },
@@ -60,42 +59,42 @@ require('nvim-tree').setup {
 	on_attach = my_on_attach,
 }
 
-vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, {})
-vim.keymap.set('n', '<Leader>e', ':NvimTreeFocus<CR>')
+-- vim.api.nvim_create_user_command('ex', function() vim.cmd.nvimtreetoggle() end, {})
+vim.keymap.set('n', '<leader>e', ':nvimtreefocus<cr>')
 
 capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-vim.api.nvim_create_autocmd('LspAttach', {
+vim.api.nvim_create_autocmd('lspattach', {
 	callback = function(ctx)
 		local set = vim.keymap.set
-		set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { buffer = true })
-		set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { buffer = true })
-		set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { buffer = true })
-		set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', { buffer = true })
-		set('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { buffer = true })
-		set('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { buffer = true })
-		set('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { buffer = true })
-		set('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+		set('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<cr>', { buffer = true })
+		set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { buffer = true })
+		set('n', 'k', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = true })
+		set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', { buffer = true })
+		set('n', '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', { buffer = true })
+		set('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', { buffer = true })
+		set('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>', { buffer = true })
+		set('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>',
 			{ buffer = true })
-		set('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', { buffer = true })
-		set('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', { buffer = true })
-		set('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { buffer = true })
-		set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { buffer = true })
-		set('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', { buffer = true })
-		set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', { buffer = true })
-		set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', { buffer = true })
-		set('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', { buffer = true })
-		set('n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', { buffer = true })
+		set('n', '<space>d', '<cmd>lua vim.lsp.buf.type_definition()<cr>', { buffer = true })
+		set('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = true })
+		set('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = true })
+		set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', { buffer = true })
+		set('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', { buffer = true })
+		set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', { buffer = true })
+		set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', { buffer = true })
+		set('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', { buffer = true })
+		set('n', '<space>f', '<cmd>lua vim.lsp.buf.format()<cr>', { buffer = true })
 	end,
 })
 
 require('mason').setup()
 require('mason-lspconfig').setup()
-require('mason-lspconfig').setup_handlers {
-	function(server_name)
-		require('lspconfig')[server_name].setup {}
-	end
-}
+-- require('mason-lspconfig').setup_handlers {
+-- 	function(server_name)
+-- 		require('lspconfig')[server_name].setup {}
+-- 	end
+-- }
 
 vim.opt.completeopt = 'menu,menuone,noselect'
 
