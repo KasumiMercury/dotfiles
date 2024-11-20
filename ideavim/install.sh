@@ -25,7 +25,7 @@ case "$ENVIRONMENT" in
 		;;
 esac
 
-if $IS_INSTALL==1; then
+if [ $IS_INSTALL -eq 1 ]; then
 	echo "[$DIR_NAME] install"
 
 	if ! link_dir "$SRC_DIR" "$DEST_DIR"; then
