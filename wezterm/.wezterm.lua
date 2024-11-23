@@ -19,8 +19,37 @@ config.window_background_opacity = 0.85
 -- color schema
 config.color_scheme = 'nightfox'
 
-wezterm.font("Moralerspace Neon NF", {weight="Regular", stretch="Normal", style="Normal"})
+wezterm.font("Moralerspace Neon NF", { weight = "Regular", stretch = "Normal", style = "Normal" })
 -- C:\USERS\MERCU\APPDATA\LOCAL\MICROSOFT\WINDOWS\FONTS\MORALERSPACENEONNF-REGULAR.TTF, DirectWrite
 
-return config
+config.leader = { key = 'o', mods = 'CTRL', timeout_milliseconds = 2000 }
 
+config.keys = {
+	{
+		key = '|',
+		mods = 'LEADER|SHIFT',
+		action = wezterm.action.SplitPane {
+			direction = 'Right',
+			size = { Percent = 50 },
+		},
+	},
+	{
+		key = '-',
+		mods = 'LEADER',
+		action = wezterm.action.SplitPane {
+			direction = 'Down',
+			size = { Percent = 50 },
+		},
+	},
+
+	-- Enable copy mode
+	{ key = 'v', mods = 'LEADER', action = wezterm.action.ActivateCopyMode },
+
+	-- Move pane
+	{ key = 'h', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Left' },
+	{ key = 'j', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Down' },
+	{ key = 'k', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Up' },
+	{ key = 'l', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Right' },
+}
+
+return config
