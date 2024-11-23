@@ -23,6 +23,7 @@ require('lazy').setup({
 	require('plugins.lualine'),
 	require('plugins.nvim-surround'),
 	require('plugins.indent-blankline'),
+	require('plugins.oil'),
 
 	{
 		'nvim-telescope/telescope.nvim',
@@ -41,13 +42,6 @@ require('lazy').setup({
 		end,
 	},
 	{
-		'stevearc/oil.nvim',
-		---@module 'oil'
-		---@type oil.setupopts
-		opts = {},
-		-- optional dependencies
-		dependencies = { { "echasnovski/mini.icons", opts = {} } },
-		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 		'rmagatti/auto-session',
 		lazy = false,
 
