@@ -85,7 +85,7 @@ vim.api.nvim_create_autocmd('lspattach', {
 		local set = vim.keymap.set
 		set('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<cr>', { buffer = true })
 		set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { buffer = true })
-		set('n', 'k', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = true })
+		set('n', 'gk', '<cmd>lua vim.lsp.buf.hover()<cr>', { buffer = true })
 		set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', { buffer = true })
 		set('n', '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', { buffer = true })
 		set('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>', { buffer = true })
