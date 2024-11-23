@@ -47,7 +47,10 @@ return {
 		    lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
 		    lualine_b = { 'filename', 'branch' },
 		    lualine_c = {
-		      '%=', --[[ add your center compoentnts here in place of this comment ]]
+		      --'%=', --[[ add your center compoentnts here in place of this comment ]]
+		      function()
+		      	return require('auto-session.lib').current_session_name(true)
+		      end
 		    },
 		    lualine_x = {},
 		    lualine_y = { 'filetype', 'progress' },

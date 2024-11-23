@@ -48,6 +48,16 @@ require('lazy').setup({
 		-- optional dependencies
 		dependencies = { { "echasnovski/mini.icons", opts = {} } },
 		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+		'rmagatti/auto-session',
+		lazy = false,
+
+		---enables autocomplete for opts
+		---@module "auto-session"
+		---@type AutoSession.Config
+		opts = {
+			-- log_level = 'debug',
+		}
+
 	}
 })
 
