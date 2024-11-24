@@ -24,6 +24,8 @@ wezterm.font("Moralerspace Neon NF", { weight = "Regular", stretch = "Normal", s
 
 config.leader = { key = 'o', mods = 'CTRL', timeout_milliseconds = 2000 }
 
+local act = wezterm.action
+
 config.keys = {
 	{
 		key = '|',
@@ -42,6 +44,22 @@ config.keys = {
 		},
 	},
 
+	{
+		key = 'f',
+		mods = 'SHIFT|META',
+		action = wezterm.action.ToggleFullScreen,
+	},
+	{
+		key = 't',
+		mods = 'SHIFT|CTRL',
+		action = act.SpawnTab 'CurrentPaneDomain',
+	},
+	{
+		key = 'd',
+		mods = 'SHIFT|CTRL',
+		action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
+	},
+
 	-- Enable copy mode
 	{ key = 'v', mods = 'LEADER', action = wezterm.action.ActivateCopyMode },
 
@@ -50,6 +68,34 @@ config.keys = {
 	{ key = 'j', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Down' },
 	{ key = 'k', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Up' },
 	{ key = 'l', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Right' },
+
+	-- Ctrl+左矢印でカーソルを前の単語に移動
+	{
+		key = "LeftArrow",
+		mods = "CTRL",
+		action = act.SendKey {
+			key = "b",
+			mods = "META",
+		},
+	},
+	-- Ctrl+右矢印でカーソルを次の単語に移動
+	{
+		key = "RightArrow",
+		mods = "CTRL",
+		action = act.SendKey {
+			key = "f",
+			mods = "META",
+		},
+	},
+	-- Ctrl+Backspaceで前の単語を削除
+	{
+		key = "Backspace",
+		mods = "CTRL",
+		action = act.SendKey {
+			key = "w",
+			mods = "CTRL",
+		},
+	},
 }
 
 return config
