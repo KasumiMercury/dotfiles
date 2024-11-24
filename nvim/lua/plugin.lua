@@ -45,7 +45,8 @@ require('lazy').setup({
 			-- log_level = 'debug',
 		}
 
-	}
+	},
+	{ 'akinsho/toggleterm.nvim', version = "*", config = true }
 })
 
 vim.g.loaded_netrw = 1
@@ -178,4 +179,19 @@ require 'nvim-treesitter.configs'.setup {
 
 }
 
+require("toggleterm").setup {
+	size = 100,
+	open_mapping = [[<c-t>]],
+	hide_numbers = true,
+	shade_filetypes = {},
+	shade_terminals = true,
+	shading_factor = 2,
+	start_in_insert = true,
+	insert_mappings = true,
+	persist_size = true,
+	direction = 'float',
+	close_on_exit = true,
+}
+
 vim.cmd('colorscheme nightfox')
+
