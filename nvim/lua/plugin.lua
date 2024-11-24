@@ -194,5 +194,7 @@ require("toggleterm").setup {
 	close_on_exit = true,
 }
 
-vim.cmd('colorscheme nightfox')
+-- for auto-session
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+vim.cmd('colorscheme nightfox')
