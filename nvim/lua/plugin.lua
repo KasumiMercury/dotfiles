@@ -18,6 +18,7 @@ require('lazy').setup({
 	require('plugins.indent-blankline'),
 	require('plugins.oil'),
 	require('plugins.flash'),
+	require('plugins.smart-open'),
 
 	{
 		'nvim-telescope/telescope.nvim',
