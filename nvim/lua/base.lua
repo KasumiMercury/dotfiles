@@ -13,6 +13,9 @@ vim.opt.wrap = true
 vim.opt.clipboard = "unnamedplus"
 vim.g.mapleader = "\\ "
 
+-- for auto-session
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 local keymap = vim.keymap
 
 keymap.set('n', 'ss', ':split<Return><C-w>w')

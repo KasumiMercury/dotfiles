@@ -39,19 +39,15 @@ require('lazy').setup({
 		'rmagatti/auto-session',
 		lazy = false,
 
-		---enables autocomplete for opts
-		---@module "auto-session"
-		---@type AutoSession.Config
-		opts = {
-			-- log_level = 'debug',
-		}
-
+		dependencies = {
+			'nvim-telescope/telescope.nvim',
+		},
 	},
 	{ 'akinsho/toggleterm.nvim', version = "*", config = true }
 })
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwplugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwplugin = 1
 vim.opt.termguicolors = true
 
 capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -194,7 +190,12 @@ require("toggleterm").setup {
 	close_on_exit = true,
 }
 
--- for auto-session
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+require('auto-session').setup({
+	post_cwd_changed_cmds = {
+		function()
+			require('lualine').refresh()
+		end
+	}
+})
 
 vim.cmd('colorscheme nightfox')
