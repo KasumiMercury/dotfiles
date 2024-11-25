@@ -12,8 +12,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 --for fzf
-local home = os.getenv("USERPROFILE")
-vim.g.sqlite_clib_path = home .. "/sqlite3/sqlite3.dll"
+if vim.fn.has('win64') == 1 then
+	local home = os.getenv("USERPROFILE")
+	vim.g.sqlite_clib_path = home .. "/sqlite3/sqlite3.dll"
+end
 
 require 'base'
 require 'plugin'
