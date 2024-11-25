@@ -57,8 +57,6 @@ require('lazy').setup({
 -- vim.g.loaded_netrwplugin = 1
 vim.opt.termguicolors = true
 
-capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 vim.api.nvim_create_autocmd('lspattach', {
 	callback = function(ctx)
 		local set = vim.keymap.set
@@ -94,6 +92,7 @@ require('mason-lspconfig').setup_handlers {
 vim.opt.completeopt = 'menu,menuone,noselect'
 
 local cmp = require 'cmp'
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -117,10 +116,14 @@ cmp.setup({
 	})
 })
 
+require('lspconfig').clangd.setup {
+	capabilities = capabilities,
+}
+
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
-  'confirm_done',
-  cmp_autopairs.on_confirm_done()
+	'confirm_done',
+	cmp_autopairs.on_confirm_done()
 )
 
 require('ibl').setup()
