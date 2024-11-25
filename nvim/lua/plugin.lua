@@ -222,4 +222,8 @@ require('auto-session').setup({
 	}
 })
 
+vim.keymap.set("n", "<leader>ao", function()
+	require("telescope").extensions.smart_open.smart_open()
+end, { noremap = true, silent = true })
+
 vim.cmd('colorscheme nightfox')
