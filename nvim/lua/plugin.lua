@@ -43,6 +43,13 @@ require('lazy').setup({
 			'nvim-telescope/telescope.nvim',
 		},
 	},
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		config = true
+		-- use opts = {} for passing setup options
+		-- this is equivalent to setup({}) function
+	},
 	{ 'akinsho/toggleterm.nvim', version = "*", config = true }
 })
 
@@ -109,6 +116,12 @@ cmp.setup({
 		{ name = 'buffer' },
 	})
 })
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 require('ibl').setup()
 
