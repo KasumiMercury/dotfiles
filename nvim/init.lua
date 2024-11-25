@@ -11,6 +11,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+--for fzf
+local home = os.getenv("USERPROFILE")
+vim.g.sqlite_clib_path = home .. "/sqlite3/sqlite3.dll"
+
 require 'base'
 require 'plugin'
 
