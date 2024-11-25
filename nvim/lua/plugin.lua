@@ -50,6 +50,12 @@ require('lazy').setup({
 		-- use opts = {} for passing setup options
 		-- this is equivalent to setup({}) function
 	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "VeryLazy",
+		opts = {},
+		config = function(_, opts) require 'lsp_signature'.setup(opts) end
+	},
 	{ 'akinsho/toggleterm.nvim', version = "*", config = true }
 })
 
