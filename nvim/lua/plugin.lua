@@ -57,7 +57,12 @@ require('lazy').setup({
 		opts = {},
 		config = function(_, opts) require 'lsp_signature'.setup(opts) end
 	},
-	{ 'akinsho/toggleterm.nvim', version = "*", config = true }
+	{ 'akinsho/toggleterm.nvim', version = "*", config = true },
+	{
+
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	}
 })
 
 -- vim.g.loaded_netrw = 1
