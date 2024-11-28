@@ -62,7 +62,8 @@ require('lazy').setup({
 
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-	}
+	},
+	{ 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' }
 })
 
 -- vim.g.loaded_netrw = 1
@@ -230,5 +231,12 @@ require('auto-session').setup({
 vim.keymap.set("n", "<leader>ao", function()
 	require("telescope").extensions.smart_open.smart_open()
 end, { noremap = true, silent = true })
+
+-- for bufferline
+vim.opt.termguicolors = true
+require("bufferline").setup{}
+
+vim.keymap.set('n', '<C-h>', '<cmd>bprev<CR>')
+vim.keymap.set('n', '<C-l>', '<cmd>bnext<CR>')
 
 vim.cmd('colorscheme nightfox')
