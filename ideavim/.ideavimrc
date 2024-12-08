@@ -91,6 +91,7 @@ nmap <leader>th <Action>(ActivateTerminalToolWindow)
 nmap <leader>q <Action>(HideAllWindows)
 nmap <leader>/ <Action>(CommentByLineComment)
 nmap <leader>bb <Action>(ToggleBookmark)
+nmap <leader>tt <Action>(ActivateTerminalToolWindow)
 
 "画面分割
 nmap <leader>ss <Action>(SplitHorizontally)
