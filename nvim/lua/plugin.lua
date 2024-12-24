@@ -104,7 +104,7 @@ vim.api.nvim_create_autocmd('lspattach', {
 		set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', { buffer = true })
 		set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', { buffer = true })
 		set('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', { buffer = true })
-		set('n', '<Space>f', '<cmd>lua vim.lsp.buf.format()<cr>', { buffer = true })
+		set('n', '<Space>f', '<cmd>lua vim.lop.buf.format()<cr>', { buffer = true })
 	end,
 })
 
@@ -249,7 +249,7 @@ end, { noremap = true, silent = true })
 
 -- for bufferline
 vim.opt.termguicolors = true
-require("bufferline").setup{}
+require("bufferline").setup {}
 
 vim.keymap.set('n', '<C-h>', '<cmd>bprev<CR>')
 vim.keymap.set('n', '<C-l>', '<cmd>bnext<CR>')
