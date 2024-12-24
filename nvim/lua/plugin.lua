@@ -63,7 +63,20 @@ require('lazy').setup({
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	{ 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' }
+	{ 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' },
+	{
+		'stevearc/quicker.nvim',
+		event = "FileType qf",
+		---@module "quicker"
+		---@type quicker.SetupOptions
+		opts = {}, ---@module "quicker"
+
+
+		---@type quicker.SetupOptions
+
+		opts = {},
+
+	}
 })
 
 -- vim.g.loaded_netrw = 1
@@ -94,6 +107,8 @@ vim.api.nvim_create_autocmd('lspattach', {
 		set('n', '<Space>f', '<cmd>lua vim.lsp.buf.format()<cr>', { buffer = true })
 	end,
 })
+
+require("quicker").setup()
 
 require('mason').setup()
 require('mason-lspconfig').setup()
