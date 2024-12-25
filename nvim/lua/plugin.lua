@@ -69,13 +69,7 @@ require('lazy').setup({
 		event = "FileType qf",
 		---@module "quicker"
 		---@type quicker.SetupOptions
-		opts = {}, ---@module "quicker"
-
-
-		---@type quicker.SetupOptions
-
 		opts = {},
-
 	}
 })
 
@@ -104,7 +98,7 @@ vim.api.nvim_create_autocmd('lspattach', {
 		set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', { buffer = true })
 		set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', { buffer = true })
 		set('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', { buffer = true })
-		set('n', '<Space>f', '<cmd>lua vim.lop.buf.format()<cr>', { buffer = true })
+		set('n', '<Space>fo', '<cmd>lua vim.lop.buf.format()<cr>', { buffer = true })
 	end,
 })
 
