@@ -98,7 +98,7 @@ vim.api.nvim_create_autocmd('lspattach', {
 		set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', { buffer = true })
 		set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', { buffer = true })
 		set('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', { buffer = true })
-		set('n', '<Space>fo', '<cmd>lua vim.lop.buf.format()<cr>', { buffer = true })
+		set('n', '<Space>fo', '<cmd>lua vim.lsp.buf.format()<cr>', { buffer = true })
 	end,
 })
 
