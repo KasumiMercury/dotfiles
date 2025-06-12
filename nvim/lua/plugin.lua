@@ -63,7 +63,14 @@ require('lazy').setup({
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	{ 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' }
+	{ 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' },
+	{
+		'stevearc/quicker.nvim',
+		event = "FileType qf",
+		---@module "quicker"
+		---@type quicker.SetupOptions
+		opts = {},
+	}
 })
 
 -- vim.g.loaded_netrw = 1
@@ -91,17 +98,19 @@ vim.api.nvim_create_autocmd('lspattach', {
 		set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', { buffer = true })
 		set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', { buffer = true })
 		set('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', { buffer = true })
-		set('n', '<Space>f', '<cmd>lua vim.lsp.buf.format()<cr>', { buffer = true })
+		set('n', '<Space>fo', '<cmd>lua vim.lsp.buf.format()<cr>', { buffer = true })
 	end,
 })
 
+require("quicker").setup()
+
 require('mason').setup()
-require('mason-lspconfig').setup()
-require('mason-lspconfig').setup_handlers {
-	function(server_name)
-		require('lspconfig')[server_name].setup {}
-	end
-}
+-- require('mason-lspconfig').setup()
+-- require('mason-lspconfig').setup_handlers {
+-- 	function(server_name)
+-- 		require('lspconfig')[server_name].setup {}
+-- 	end
+-- }
 
 vim.opt.completeopt = 'menu,menuone,noselect'
 
@@ -234,7 +243,7 @@ end, { noremap = true, silent = true })
 
 -- for bufferline
 vim.opt.termguicolors = true
-require("bufferline").setup{}
+require("bufferline").setup {}
 
 vim.keymap.set('n', '<C-h>', '<cmd>bprev<CR>')
 vim.keymap.set('n', '<C-l>', '<cmd>bnext<CR>')
