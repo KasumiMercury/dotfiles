@@ -16,6 +16,8 @@ config.use_ime = true
 
 config.window_background_opacity = 0.85
 
+config.default_prog = { 'pwsh.exe' }
+
 -- color schema
 config.color_scheme = 'nightfox'
 
