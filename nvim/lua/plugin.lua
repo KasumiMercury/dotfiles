@@ -12,6 +12,32 @@ require('lazy').setup({
 
 	{ 'l3mon4d3/luasnip' },
 	{ 'saadparwaiz1/cmp_luasnip' },
+	{ 
+		'github/copilot.vim',
+		lazy=false,
+	},
+	{
+		'zbirenbaum/copilot.lua',
+		cmd = 'Copilot',
+		config = function()
+			require('copilot').setup({
+				suggestion = {
+					enabled = false,
+				},
+				panel = {
+					enabled = false,
+				},
+				copilot_node_command = 'node',
+			})
+		end
+	},
+	{
+		'zbirenbaum/copilot-cmp',
+		dependencies = { 'zbirenbaum/copilot.lua' },
+		config = function()
+			require('copilot_cmp').setup()
+		end
+	},
 
 	require('plugins.lualine'),
 	require('plugins.nvim-surround'),
@@ -134,6 +160,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
+		{ name = 'copilot' },
 	}, {
 		{ name = 'buffer' },
 	})
@@ -249,3 +276,4 @@ vim.keymap.set('n', '<C-h>', '<cmd>bprev<CR>')
 vim.keymap.set('n', '<C-l>', '<cmd>bnext<CR>')
 
 vim.cmd('colorscheme nightfox')
+
