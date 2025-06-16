@@ -24,17 +24,13 @@ config.color_scheme = 'nightfox'
 wezterm.font("Moralerspace Neon NF", { weight = "Regular", stretch = "Normal", style = "Normal" })
 -- C:\USERS\MERCU\APPDATA\LOCAL\MICROSOFT\WINDOWS\FONTS\MORALERSPACENEONNF-REGULAR.TTF, DirectWrite
 wezterm.font_size = 10.0
+wezterm.adjust_window_size_when_changing_font_size = false
 
 config.leader = { key = 'o', mods = 'CTRL', timeout_milliseconds = 2000 }
 
 local act = wezterm.action
 
 config.keys = {
-	-- フォントサイズの変更
-	{ key = "+", mods = "CTRL", action = act.IncreaseFontSize },
-	{ key = "-", mods = "CTRL", action = act.DecreaseFontSize },
-	-- フォントサイズのリセット
-	{ key = "0", mods = "CTRL", action = act.ResetFontSize },
 	{
 		key = '|',
 		mods = 'LEADER|SHIFT',
