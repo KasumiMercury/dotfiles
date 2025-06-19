@@ -130,7 +130,6 @@ vim.api.nvim_create_autocmd('lspattach', {
 
 require("quicker").setup()
 
-require('mason').setup()
 -- require('mason-lspconfig').setup()
 -- require('mason-lspconfig').setup_handlers {
 -- 	function(server_name)
@@ -140,8 +139,21 @@ require('mason').setup()
 
 vim.opt.completeopt = 'menu,menuone,noselect'
 
+require('mason').setup()
+-- require('mason-lspconfig').setup()
+-- require("mason-lspconfig").setup_handlers({
+-- 	function(server_name)
+-- 		vim.lsp.enable({server_name})
+-- 	end
+-- })
+
 local cmp = require 'cmp'
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+vim.lsp.config('*', {
+  capabilities = capabilities,
+})
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -165,10 +177,6 @@ cmp.setup({
 		{ name = 'buffer' },
 	})
 })
-
-require('lspconfig').clangd.setup {
-	capabilities = capabilities,
-}
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
