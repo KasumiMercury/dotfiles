@@ -130,17 +130,15 @@ vim.api.nvim_create_autocmd('lspattach', {
 
 require("quicker").setup()
 
--- require('mason-lspconfig').setup()
+vim.opt.completeopt = 'menu,menuone,noselect'
+
+require('mason').setup()
+require('mason-lspconfig').setup()
 -- require('mason-lspconfig').setup_handlers {
 -- 	function(server_name)
 -- 		require('lspconfig')[server_name].setup {}
 -- 	end
 -- }
-
-vim.opt.completeopt = 'menu,menuone,noselect'
-
-require('mason').setup()
--- require('mason-lspconfig').setup()
 -- require("mason-lspconfig").setup_handlers({
 -- 	function(server_name)
 -- 		vim.lsp.enable({server_name})
