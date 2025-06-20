@@ -12,9 +12,9 @@ require('lazy').setup({
 
 	{ 'l3mon4d3/luasnip' },
 	{ 'saadparwaiz1/cmp_luasnip' },
-	{ 
+	{
 		'github/copilot.vim',
-		lazy=false,
+		lazy = false,
 	},
 	{
 		'zbirenbaum/copilot.lua',
@@ -149,7 +149,7 @@ local cmp = require 'cmp'
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 vim.lsp.config('*', {
-  capabilities = capabilities,
+	capabilities = capabilities,
 })
 
 cmp.setup({
@@ -282,4 +282,3 @@ vim.keymap.set('n', '<C-h>', '<cmd>bprev<CR>')
 vim.keymap.set('n', '<C-l>', '<cmd>bnext<CR>')
 
 vim.cmd('colorscheme nightfox')
-
