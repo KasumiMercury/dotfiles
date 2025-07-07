@@ -26,6 +26,26 @@ wezterm.font("Moralerspace Neon NF", { weight = "Regular", stretch = "Normal", s
 wezterm.font_size = 10.0
 wezterm.adjust_window_size_when_changing_font_size = false
 
+local function is_claude(pane)
+  local process = pane:get_foreground_process_info()
+  if not process or not process.argv then
+    return false
+  end
+
+  for _, arg in ipairs(process.argv) do
+    if arg:find("claude") then
+      return true
+    end
+  end
+  return false
+end
+
+wezterm.on("bell", function(window, pane)
+  if is_claude(pane) then
+    window:toast_notification("Claude Code", "Task completed", nil, 4000)
+  end
+end)
+
 config.leader = { key = 'o', mods = 'CTRL', timeout_milliseconds = 2000 }
 
 local act = wezterm.action
