@@ -12,10 +12,10 @@ require('lazy').setup({
 
 	{ 'l3mon4d3/luasnip' },
 	{ 'saadparwaiz1/cmp_luasnip' },
-	{
-		'github/copilot.vim',
-		lazy = false,
-	},
+	-- {
+	-- 	'github/copilot.vim',
+	-- 	lazy = false,
+	-- },
 	{
 		'zbirenbaum/copilot.lua',
 		cmd = 'Copilot',
@@ -33,7 +33,7 @@ require('lazy').setup({
 	},
 	{
 		'zbirenbaum/copilot-cmp',
-		dependencies = { 'zbirenbaum/copilot.lua' },
+		after = { "copilot.lua" },
 		config = function()
 			require('copilot_cmp').setup()
 		end
