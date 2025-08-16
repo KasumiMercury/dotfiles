@@ -1,5 +1,13 @@
 -- LSP設定
 
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = true,
+})
+
 -- LSPアタッチ時のキーマッピング
 vim.api.nvim_create_autocmd('lspattach', {
 	callback = function(ctx)
@@ -18,21 +26,17 @@ vim.api.nvim_create_autocmd('lspattach', {
 		set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = true })
 		set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = true })
 		set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', { buffer = true })
-		set('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>', { buffer = true })
-		set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>', { buffer = true })
-		set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>', { buffer = true })
-		set('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', { buffer = true })
+		set('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<cr>', { buffer = true })
+		set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', { buffer = true })
+		set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', { buffer = true })
+		set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<cr>', { buffer = true })
 		set('n', '<Space>fo', '<cmd>lua vim.lsp.buf.format()<cr>', { buffer = true })
+		
+		-- set('n', 'grn', '<cmd>lua vim.lsp.buf.rename()<cr>', { buffer = true })
+		-- set('n', 'grr', '<cmd>lua vim.lsp.buf.references()<cr>', { buffer = true })
+		-- set('n', 'gri', '<cmd>lua vim.lsp.buf.implementation()<cr>', { buffer = true })
+		-- set('n', 'gO', '<cmd>lua vim.lsp.buf.document_symbol()<cr>', { buffer = true })
+		-- set('n', 'gra', '<cmd>lua vim.lsp.buf.code_action()<cr>', { buffer = true })
 	end,
 })
 
--- require('mason-lspconfig').setup_handlers {
--- 	function(server_name)
--- 		require('lspconfig')[server_name].setup {}
--- 	end
--- }
--- require("mason-lspconfig").setup_handlers({
--- 	function(server_name)
--- 		vim.lsp.enable({server_name})
--- 	end
--- })

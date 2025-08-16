@@ -1,14 +1,28 @@
 return {
 	{
-		'williamboman/mason.nvim',
-		config = function()
-			require('mason').setup()
-		end
+		'mason-org/mason.nvim',
+		build = ':MasonUpdate',
+		opts = {
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗"
+				}
+			}
+		}
 	},
 	{
-		'williamboman/mason-lspconfig.nvim',
-		config = function()
-			require('mason-lspconfig').setup()
+		'mason-org/mason-lspconfig.nvim',
+		dependencies = {
+			'mason-org/mason.nvim',
+			'neovim/nvim-lspconfig',
+		},
+		opts = {
+			automatic_installation = true,
+		},
+		config = function(_, opts)
+			require('mason-lspconfig').setup(opts)
 		end
 	},
 	{
@@ -23,3 +37,4 @@ return {
 		end
 	},
 }
+
