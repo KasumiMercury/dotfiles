@@ -13,10 +13,19 @@ local function my_on_attach(bufnr)
 	-- vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('help'))
 end
 
--- pass to setup along with your other options
-require('nvim-tree').setup {
-	on_attach = my_on_attach,
-}
+return {
+	'nvim-tree/nvim-tree.lua',
+	dependencies = {
+		'nvim-tree/nvim-web-devicons',
+	},
+	config = function()
+		-- pass to setup along with your other options
+		require('nvim-tree').setup {
+			on_attach = my_on_attach,
+		}
 
-vim.api.nvim_create_user_command('ex', function() vim.cmd.nvimtreetoggle() end, {})
-vim.keymap.set('n', '<leader>e', ':nvimtreefocus<cr>')
+		-- コマンドとキーマッピング
+		vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, {})
+		vim.keymap.set('n', '<leader>e', ':NvimTreeFocus<cr>')
+	end
+}

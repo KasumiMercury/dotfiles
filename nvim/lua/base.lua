@@ -63,3 +63,4 @@ digraphs("j9", 65305) -- ９
 digraphs("j~", 12316) -- 〜
 digraphs("j/", 12539) -- ・
 digraphs("js", 12288) -- 　
+
