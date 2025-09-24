@@ -18,6 +18,13 @@ config.window_background_opacity = 0.85
 
 config.default_prog = { 'pwsh.exe' }
 
+config.launch_menu = {
+	{
+		label = 'Git Bash',
+		args = { 'C:\\Program Files\\Git\\bin\\bash.exe', '-l' }
+	}
+}
+
 -- color schema
 config.color_scheme = 'nightfox'
 
@@ -67,7 +74,6 @@ config.keys = {
 			size = { Percent = 50 },
 		},
 	},
-
 	{
 		key = 'f',
 		mods = 'SHIFT|META',
@@ -75,12 +81,12 @@ config.keys = {
 	},
 	{
 		key = 't',
-		mods = 'SHIFT|CTRL',
+		mods = 'LEADER|CTRL',
 		action = act.SpawnTab 'CurrentPaneDomain',
 	},
 	{
 		key = 'd',
-		mods = 'SHIFT|CTRL',
+		mods = 'LEADER|CTRL',
 		action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
 	},
 
