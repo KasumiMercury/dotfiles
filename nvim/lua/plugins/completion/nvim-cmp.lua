@@ -6,6 +6,7 @@ return {
 			'hrsh7th/cmp-buffer',
 			'l3mon4d3/luasnip',
 			'saadparwaiz1/cmp_luasnip',
+			'zbirenbaum/copilot-cmp',
 		},
 		config = function()
 			vim.opt.completeopt = 'menu,menuone,noselect'
