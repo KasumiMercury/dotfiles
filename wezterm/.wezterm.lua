@@ -62,6 +62,11 @@ local act = wezterm.action
 
 config.keys = {
 	{
+		key = 'l',
+		mods = 'ALT',
+		action = wezterm.action.ShowLauncher,
+	},
+	{
 		key = '|',
 		mods = 'LEADER|SHIFT',
 		action = wezterm.action.SplitPane {
