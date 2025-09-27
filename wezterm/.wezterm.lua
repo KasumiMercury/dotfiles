@@ -1,6 +1,9 @@
 local wezterm = require 'wezterm'
 local config = {}
 
+local wsl_domains = wezterm.default_wsl_domains()
+config.wsl_domains = wsl_domains
+
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
