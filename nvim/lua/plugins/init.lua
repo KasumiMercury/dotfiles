@@ -6,6 +6,7 @@ require('lazy').setup({
 	require('plugins.ui.lualine'),
 	require('plugins.ui.bufferline'),
 	require('plugins.ui.todo-comments'),
+	require('plugins.ui.render-markdown'),
 	
 	-- エディタ機能
 	require('plugins.editor.treesitter'),
