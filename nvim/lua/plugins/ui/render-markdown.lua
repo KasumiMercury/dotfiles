@@ -1,6 +1,8 @@
 return {
 	'MeanderingProgrammer/render-markdown.nvim',
-	opts = {},
+	opts = {
+		completions = { lsp = { enabled = true } },
+	},
 	dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
 	ft = {"markdown"},
 }
