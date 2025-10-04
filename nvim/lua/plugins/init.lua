@@ -21,11 +21,15 @@ require('lazy').setup({
 	require('plugins.file-manager.smart-open'),
 	require('plugins.file-manager.telescope'),
 	
-	-- 補完・LSP
-	require('plugins.completion.mason'),
+	-- 補完
 	require('plugins.completion.nvim-cmp'),
 	require('plugins.completion.copilot'),
 	
+	-- LSP
+	require('plugins.lsp.mason'),
+	require('plugins.lsp.nvim-lspconfig'),
+	require('plugins.lsp.lsp-signature'),
+
 	-- ターミナル
 	require('plugins.terminal.toggleterm'),
 	

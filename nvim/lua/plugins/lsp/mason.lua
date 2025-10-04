@@ -25,16 +25,5 @@ return {
 			require('mason-lspconfig').setup(opts)
 		end
 	},
-	{
-		'neovim/nvim-lspconfig'
-	},
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "VeryLazy",
-		opts = {},
-		config = function(_, opts)
-			require 'lsp_signature'.setup(opts)
-		end
-	},
 }
 
