@@ -18,6 +18,7 @@ return {
 			scope = { enabled = true },
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
+			rename = { enabled = true },
 		},
 
 		keys = {
