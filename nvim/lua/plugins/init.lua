@@ -18,7 +18,6 @@ require('lazy').setup({
 	
 	-- ファイル管理
 	require('plugins.file-manager.oil'),
-	require('plugins.file-manager.nvim-tree'),
 	require('plugins.file-manager.smart-open'),
 	require('plugins.file-manager.telescope'),
 	
