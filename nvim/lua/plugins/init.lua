@@ -29,6 +29,7 @@ require('lazy').setup({
 	require('plugins.lsp.mason'),
 	require('plugins.lsp.nvim-lspconfig'),
 	require('plugins.lsp.lsp-signature'),
+	require('plugins.lsp.fidget'),
 
 	-- ターミナル
 	require('plugins.terminal.toggleterm'),
