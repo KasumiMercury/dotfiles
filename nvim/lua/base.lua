@@ -28,6 +28,9 @@ keymap.set('n', 'sl', '<C-w>l')
 keymap.set('i', 'jk', '<Esc>')
 keymap.set('n', '<F1>', ':edit $MYVIMRC<CR>')
 
+keymap.set('n', '<C-h>', '<cmd>bprev<CR>')
+keymap.set('n', '<C-l>', '<cmd>bnext<CR>')
+
 local digraphs = vim.cmd.digraphs
 
 -- カッコ
