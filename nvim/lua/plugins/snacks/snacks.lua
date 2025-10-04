@@ -53,6 +53,13 @@ return {
 			{
 				"SS",
 				function()
+					Snacks.scratch()
+				end,
+				desc = "Toggle Scratch Buffer",
+			},
+			{
+				"ST",
+				function()
 					Snacks.scratch.select()
 				end,
 				desc = "Select Scratch Buffer",
