@@ -40,4 +40,9 @@ vim.keymap.set("n", "<leader>ao", function()
 	require("telescope").extensions.smart_open.smart_open()
 end, { noremap = true, silent = true })
 
+-- oil keymap
+vim.keymap.set("n", "<Bslash><Bslash>", function()
+	require("oil").toggle_float()
+end, { noremap = true, silent = true })
+
 require('ibl').setup()
