@@ -39,6 +39,9 @@ require('lazy').setup({
 
 	-- snacks
 	require('plugins.snacks.snacks'),
+
+	-- 言語特化
+	require('plugins.lang.rust')
 })
 
 vim.opt.termguicolors = true
