@@ -36,6 +36,9 @@ require('lazy').setup({
 	
 	-- セッション管理
 	require('plugins.session.auto-session'),
+
+	-- snacks
+	require('plugins.snacks.snacks'),
 })
 
 vim.opt.termguicolors = true
