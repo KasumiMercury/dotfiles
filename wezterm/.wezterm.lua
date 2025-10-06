@@ -67,6 +67,13 @@ config.keys = {
 		action = wezterm.action.ShowLauncher,
 	},
 	{
+		key="Enter",
+		mods="SHIFT",
+		action=wezterm.action{
+			SendString="\x1b\r"
+		},
+	},
+	{
 		key = '|',
 		mods = 'LEADER|SHIFT',
 		action = wezterm.action.SplitPane {
