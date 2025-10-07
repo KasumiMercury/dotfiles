@@ -25,6 +25,10 @@ config.launch_menu = {
 	{
 		label = 'Git Bash',
 		args = { 'C:\\Program Files\\Git\\bin\\bash.exe', '-l' }
+	},
+	{
+		label = 'cmd',
+		args = { 'C:\\Windows\\System32\\cmd.exe' }
 	}
 }
 
