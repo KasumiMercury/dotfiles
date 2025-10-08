@@ -118,6 +118,10 @@ config.keys = {
 	{ key = 'k', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Up' },
 	{ key = 'l', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Right' },
 
+	-- Switch tab
+	{ key = 'h', mods = 'LEADER|CTRL', action = wezterm.action.ActivateTabRelative(-1) },
+	{ key = 'l', mods = 'LEADER|CTRL', action = wezterm.action.ActivateTabRelative(1) },
+
 	-- Ctrl+左矢印でカーソルを前の単語に移動
 	{
 		key = "LeftArrow",
