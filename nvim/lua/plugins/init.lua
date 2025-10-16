@@ -41,7 +41,11 @@ require('lazy').setup({
 	require('plugins.snacks.snacks'),
 
 	-- 言語特化
-	require('plugins.lang.rust')
+	require('plugins.lang.rust'),
+
+	-- git
+	require('plugins.git.gitsigns'),
+	require('plugins.git.diffview'),
 })
 
 vim.opt.termguicolors = true
