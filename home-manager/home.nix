@@ -34,7 +34,7 @@
     ripgrep
     fd
 
-    nodejs_22
+    nodejs_24
 
     fzf
     go-task
