@@ -42,6 +42,7 @@
     tig
     direnv
     jq
+    mise
 
     devenv
   ];
