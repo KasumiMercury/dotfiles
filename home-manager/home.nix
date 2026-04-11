@@ -36,6 +36,7 @@
     rustc
 
     nodejs_24
+    pnpm
 
     fzf
     go-task
