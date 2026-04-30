@@ -35,6 +35,7 @@
     pnpm
     biome
 
+    ghq
     fzf
     go-task
     lefthook
