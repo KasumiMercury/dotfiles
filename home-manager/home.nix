@@ -15,11 +15,6 @@
   # release notes.
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-  };
-
   xdg.configFile."nvim" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
   };
@@ -27,6 +22,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    neovim
     gcc
     tree-sitter
     sqlite
