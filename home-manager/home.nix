@@ -43,6 +43,7 @@
     direnv
     jq
     mise
+    zip
 
     devenv
     devbox
