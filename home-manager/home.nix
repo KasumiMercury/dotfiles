@@ -33,6 +33,7 @@
 
     nodejs_24
     pnpm
+    biome
 
     fzf
     go-task
