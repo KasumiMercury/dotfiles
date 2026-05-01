@@ -85,7 +85,7 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   return " " .. title
 end)
 
-config.leader = { key = 'o', mods = 'CTRL', timeout_milliseconds = 2000 }
+config.leader = { key = '\\', mods = 'CTRL', timeout_milliseconds = 2000 }
 
 local act = wezterm.action
 
@@ -119,11 +119,6 @@ config.keys = {
 		},
 	},
 	{
-		key = 'f',
-		mods = 'SHIFT|META',
-		action = wezterm.action.ToggleFullScreen,
-	},
-	{
 		key = 't',
 		mods = 'LEADER|CTRL',
 		action = act.SpawnTab 'CurrentPaneDomain',
@@ -153,7 +148,7 @@ config.keys = {
 		mods = "CTRL",
 		action = act.SendKey {
 			key = "b",
-			mods = "META",
+			mods = "ALT",
 		},
 	},
 	-- Ctrl+右矢印でカーソルを次の単語に移動
@@ -162,7 +157,7 @@ config.keys = {
 		mods = "CTRL",
 		action = act.SendKey {
 			key = "f",
-			mods = "META",
+			mods = "ALT",
 		},
 	},
 	-- Ctrl+Backspaceで前の単語を削除
