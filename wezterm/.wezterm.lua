@@ -17,8 +17,6 @@ config.scrollback_lines = 3500
 
 config.use_ime = true
 
-config.window_background_opacity = 0.85
-
 config.default_prog = { 'pwsh.exe' }
 
 config.launch_menu = {
@@ -54,10 +52,37 @@ local function is_claude(pane)
   return false
 end
 
+wezterm.GLOBAL.bell_tabs = wezterm.GLOBAL.bell_tabs or {}
+
 wezterm.on("bell", function(window, pane)
-  if is_claude(pane) then
-    window:toast_notification("Claude Code", "Task completed", nil, 4000)
+  local tab = pane:tab()
+  if tab then
+    wezterm.GLOBAL.bell_tabs[tostring(tab:tab_id())] = true
   end
+
+  if is_claude(pane) then
+    window:toast_notification("Claude Code", "Claude is calling", nil, 4000)
+  else
+    window:toast_notification("WezTerm", "Bell event triggered", nil, 4000)
+  end
+end)
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  local tab_id_str = tostring(tab.tab_id)
+
+  if tab.is_active and wezterm.GLOBAL.bell_tabs[tab_id_str] then
+    wezterm.GLOBAL.bell_tabs[tab_id_str] = nil
+  end
+
+  local title = tab.tab_title
+  if title == nil or #title == 0 then
+    title = tab.active_pane.title
+  end
+
+  if wezterm.GLOBAL.bell_tabs[tab_id_str] then
+    return "● " .. title
+  end
+  return " " .. title
 end)
 
 config.leader = { key = 'o', mods = 'CTRL', timeout_milliseconds = 2000 }
