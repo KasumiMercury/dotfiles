@@ -35,6 +35,7 @@
     pnpm
     biome
 
+    gh
     ghq
     fzf
     go-task
@@ -73,6 +74,34 @@
   #  /etc/profiles/per-user/mercury/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
+  };
+
+  programs.git = {
+    enable = true;
+    includes = [
+      { path = "~/.config/git/local.gitconfig"; }
+    ];
+    settings = {
+      user = {
+        name = "KasumiMercury";
+        email = "88318012+KasumiMercury@users.noreply.github.com";
+      };
+      init.defaultBranch = "main";
+      commit.verbose = true;
+      push.autoSetupRemote = true;
+      core = {
+        autocrlf = "input";
+        editor = "nvim";
+      };
+      credential."https://github.com".helper = [
+        ""
+        "!${pkgs.gh}/bin/gh auth git-credential"
+      ];
+      credential."https://gist.github.com".helper = [
+        ""
+        "!${pkgs.gh}/bin/gh auth git-credential"
+      ];
+    };
   };
 
   # Let Home Manager install and manage itself.

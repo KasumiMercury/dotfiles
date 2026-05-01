@@ -1,0 +1,27 @@
+[user]
+	name = KasumiMercury
+	email = 88318012+KasumiMercury@users.noreply.github.com
+
+[init]
+	defaultBranch = main
+
+[commit]
+	verbose = true
+
+[push]
+	autoSetupRemote = true
+
+[core]
+	autocrlf = true
+	editor = nvim
+
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
+
+[include]
+	path = ~/.config/git/local.gitconfig
