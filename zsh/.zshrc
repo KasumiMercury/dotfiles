@@ -26,6 +26,13 @@ eval "$(sheldon source)"
 
 setopt no_beep
 
+# Load custom shell functions.
+if [ -d "$HOME/.config/zsh/functions" ]; then
+    for func_file in "$HOME"/.config/zsh/functions/*.zsh(N); do
+        source "$func_file"
+    done
+fi
+
 # Load PC-specific configuration if it exists.
 # Place machine-local settings (paths, secrets, work-only aliases, etc.) in this file.
 if [ -f "$HOME/.config/zsh/local.zshrc" ]; then

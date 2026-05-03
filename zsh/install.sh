@@ -31,6 +31,18 @@ if ! link_dir "$SRC" "$DEST"; then
 	exit 1
 fi
 
+FUNCTIONS_DIR="$HOME/.config/zsh/functions"
+mkdir -p "$FUNCTIONS_DIR"
+
+shopt -s nullglob
+for src in "$SCRIPT_DIR/functions"/*.zsh; do
+	if ! link_dir "$src" "$FUNCTIONS_DIR/$(basename "$src")"; then
+		echo "failed to create symbolic link for $src"
+		exit 1
+	fi
+done
+shopt -u nullglob
+
 LOCAL_DIR="$HOME/.config/zsh"
 LOCAL_FILE="$LOCAL_DIR/local.zshrc"
 if [ ! -e "$LOCAL_FILE" ]; then
