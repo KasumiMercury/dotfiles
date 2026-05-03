@@ -29,7 +29,6 @@
     sheldon
 
     neovim
-    gcc
     tree-sitter
     sqlite
     ripgrep
