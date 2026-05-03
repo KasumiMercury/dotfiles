@@ -16,6 +16,9 @@ autoload -U promptinit; promptinit
 zstyle ':prompt:pure:prompt:success' color green
 prompt pure
 
+export PATH=$PATH:~/.local/bin/
+export PATH=$PATH:~/.nix-profile/bin/
+
 eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)"
 
@@ -28,3 +31,9 @@ setopt no_beep
 if [ -f "$HOME/.config/zsh/local.zshrc" ]; then
     source "$HOME/.config/zsh/local.zshrc"
 fi
+
+# Nix
+if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+  . "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+fi
+
