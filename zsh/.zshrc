@@ -24,6 +24,8 @@ eval "$(direnv hook zsh)"
 
 eval "$(sheldon source)"
 
+eval "$(zoxide init zsh)"
+
 setopt no_beep
 
 # Load custom shell functions.
