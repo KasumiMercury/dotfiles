@@ -66,6 +66,34 @@ wezterm.on("bell", function(window, pane)
   end
 end)
 
+local function get_remote_label(pane_info)
+  local domain = pane_info.domain_name or ""
+
+  local wsl_name = domain:match("^WSL:(.+)$")
+  if wsl_name then
+    return wsl_name
+  end
+
+  if domain ~= "" and domain ~= "local" then
+    return domain
+  end
+
+  local cwd = pane_info.current_working_dir
+  if cwd then
+    local host
+    if type(cwd) == "string" then
+      host = cwd:match("^%w+://([^/]+)")
+    else
+      host = cwd.host
+    end
+    if host and host ~= "" and host ~= wezterm.hostname() then
+      return host
+    end
+  end
+
+  return nil
+end
+
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
   local tab_id_str = tostring(tab.tab_id)
 
@@ -76,6 +104,11 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
   local title = tab.tab_title
   if title == nil or #title == 0 then
     title = tab.active_pane.title
+  end
+
+  local remote = get_remote_label(tab.active_pane)
+  if remote then
+    title = remote .. ": " .. title
   end
 
   if wezterm.GLOBAL.bell_tabs[tab_id_str] then
