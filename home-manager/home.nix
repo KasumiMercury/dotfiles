@@ -1,5 +1,24 @@
 { config, pkgs, ... }:
 
+let
+  gwq = pkgs.buildGoModule {
+    pname = "gwq";
+    version = "0.1.1";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "d-kuro";
+      repo = "gwq";
+      rev = "c4247734968bc3f66addd1e088c19b962c27cfc1";
+      hash = "sha256-MfCYFbODWnfPxx+6sLlcMT6tqghgILHB13+ccYqVjBA=";
+    };
+
+    vendorHash = "sha256-4K01Xf1EXl/NVX1loQ76l1bW8QglBAQdvlZSo7J4NPI=";
+
+    preCheck = "export HOME=$TMPDIR";
+    nativeCheckInputs = [ pkgs.git ];
+  };
+in
+
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -42,6 +61,7 @@
 
     gh
     ghq
+    gwq
     fzf
     go-task
     lefthook
