@@ -14,7 +14,7 @@ case "$ENVIRONMENT" in
 	"windows")
 		DEST="$HOME/.gitconfig"
 		;;
-	"linux")
+	"linux" | "darwin")
 		if command -v nix >/dev/null 2>&1; then
 			echo "[$DIR_NAME] nix detected, skipping (use home-manager.sh for git config)"
 			return 0

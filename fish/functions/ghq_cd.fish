@@ -9,10 +9,20 @@ function ghq_cd --description 'cd into a ghq-managed repository selected with fz
     end
 
     set -l ghq_root (ghq root)
+
+    # GNU ls (Linux/coreutils) understands --color; BSD ls (macOS) does not,
+    # and needs -G plus CLICOLOR_FORCE to colorize when stdout is not a tty.
+    # fzf runs the preview command through $SHELL, so set the variable with
+    # `env` rather than relying on a VAR=VALUE command prefix.
+    set -l preview_cmd "env CLICOLOR_FORCE=1 ls -lA -G $ghq_root/{}"
+    if command ls --color=always -d . >/dev/null 2>&1
+        set preview_cmd "ls -lA --color=always $ghq_root/{}"
+    end
+
     set -l selected (ghq list \
         | fzf \
             --prompt='ghq> ' \
-            --preview "ls -lA --color=always $ghq_root/{}" \
+            --preview "$preview_cmd" \
             --preview-window=right:60%:wrap \
             --ansi)
 

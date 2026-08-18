@@ -15,7 +15,7 @@ case "$ENVIRONMENT" in
 		echo "[$DIR_NAME] zsh is not supported on Windows, skipping"
 		return 0
 		;;
-	"linux")
+	"linux" | "darwin")
 		DEST="$HOME/.zshrc"
 		;;
 	*)

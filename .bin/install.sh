@@ -1,17 +1,23 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 set -ue
 
 helpmsg() {
-	command ehco "Usage: $0 [--help | -h]" 0>&2
+	command echo "Usage: $0 [--help | -h]" 0>&2
 	command echo ""
 }
 
 detect_environment() {
-	if [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "cygwin" ]];then
-		echo "windows"
-	else
-		echo "linux"
-	fi
+	case "$OSTYPE" in
+		msys* | cygwin*)
+			echo "windows"
+			;;
+		darwin*)
+			echo "darwin"
+			;;
+		*)
+			echo "linux"
+			;;
+	esac
 }
 
 link_dots() {
@@ -21,9 +27,14 @@ link_dots() {
 	ENVIRONMENT=$(detect_environment)
 	echo "Environment: $ENVIRONMENT"
 	
+	local answer
 	read -p "Is correct? (y/N): " answer
 
-	if [[ "${answer,,}" != "y" ]];then
+	# NOTE: lowercase via tr for macOS system bash (3.2), which lacks the
+	# bash 4 lowercasing parameter expansion
+	answer=$(printf '%s' "$answer" | tr '[:upper:]' '[:lower:]')
+
+	if [ "$answer" != "y" ];then
 		return 1
 	fi
 
@@ -63,5 +74,5 @@ while [ $# -gt 0 ];do
 done
 
 link_dots
-command echo -e "\e[1;36m Install completed!!!! \e[m"
+command echo -e "\033[1;36m Install completed!!!! \033[m"
 

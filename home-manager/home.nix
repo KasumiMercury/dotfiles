@@ -20,10 +20,8 @@ let
 in
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "mercury";
-  home.homeDirectory = "/home/mercury";
+  # home.username / home.homeDirectory are injected from flake.nix
+  # so that this module can be shared across systems and users.
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

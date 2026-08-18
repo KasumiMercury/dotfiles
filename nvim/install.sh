@@ -13,7 +13,7 @@ case "$ENVIRONMENT" in
 	"windows")
 		DEST_DIR="$HOME/AppData/Local/nvim"
 		;;
-	"linux")
+	"linux" | "darwin")
 		DEST_DIR="$HOME/.config/nvim"
 		;;
 	*)

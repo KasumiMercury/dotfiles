@@ -18,7 +18,9 @@ case "$ENVIRONMENT" in
 		DEST_WEZTERM="$HOME/.wezterm.lua"
 		DEST_KEYMAPS="$HOME/keymaps.lua"
 		;;
-	"linux")
+	"linux" | "darwin")
+		# current wezterm config is Windows-specific (launches pwsh.exe)
+		echo "[$DIR_NAME] wezterm config is Windows-only, skipping"
 		IS_INSTALL=0
 		;;
 	*)

@@ -5,7 +5,7 @@ backup() {
 	local dest="$dest"
 	if [ -e "$dest" ];then
 		echo "backup $dest"
-		mv "$dest" "${dest}.dotbackup-$(date +%Y%m%d-%h%M%S)"
+		mv "$dest" "${dest}.dotbackup-$(date +%Y%m%d-%H%M%S)"
 		return 0
 	fi
 	return 1
@@ -20,7 +20,13 @@ link_dir() {
 		return 1
 	fi
 
-	src=$(realpath "$src")
+	# realpath is unavailable on stock macOS before Ventura (13),
+	# so resolve the absolute path portably.
+	if [ -d "$src" ]; then
+		src=$(cd "$src" && pwd -P)
+	else
+		src="$(cd "$(dirname "$src")" && pwd -P)/$(basename "$src")"
+	fi
 
 	echo "Make symbolic link: $src -> $dest"
 	

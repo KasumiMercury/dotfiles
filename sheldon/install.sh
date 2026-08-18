@@ -15,7 +15,7 @@ case "$ENVIRONMENT" in
 		echo "[$DIR_NAME] sheldon is not supported on Windows, skipping"
 		return 0
 		;;
-	"linux")
+	"linux" | "darwin")
 		if command -v nix >/dev/null 2>&1; then
 			echo "[$DIR_NAME] nix detected, skipping (use home-manager.sh for sheldon config)"
 			return 0

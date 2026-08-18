@@ -13,7 +13,8 @@ SRC_DIR=$SCRIPT_DIR/.ideavimrc
 IS_INSTALL=1
 
 case "$ENVIRONMENT" in
-	"windows")
+	"windows" | "darwin")
+		# macOS JetBrains IDEs read ~/.ideavimrc as well
 		DEST_DIR="$HOME/.ideavimrc"
 		;;
 	"linux")
