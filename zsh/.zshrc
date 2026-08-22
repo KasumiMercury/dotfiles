@@ -21,6 +21,7 @@ export PATH=$PATH:~/.nix-profile/bin/
 
 eval "$(mise activate zsh)"
 eval "$(direnv hook zsh)"
+eval "$(devenv hook zsh)"
 
 eval "$(sheldon source)"
 
