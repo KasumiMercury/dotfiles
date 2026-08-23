@@ -53,6 +53,8 @@ in
     cargo
     rustc
 
+    deno
+
     nodejs_24
     pnpm
     biome

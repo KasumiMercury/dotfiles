@@ -44,6 +44,7 @@ require('lazy').setup({
 	require('plugins.lang.rust'),
 
 	-- git
+	require('plugins.git.gin'),
 	require('plugins.git.gitsigns'),
 	require('plugins.git.diffview'),
 })
