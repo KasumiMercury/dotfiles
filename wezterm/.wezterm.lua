@@ -124,7 +124,7 @@ local act = wezterm.action
 config.keys = {
 	{
 		key = 'l',
-		mods = 'ALT',
+		mods = 'CTRL|ALT',
 		action = wezterm.action.ShowLauncher,
 	},
 	{
