@@ -36,11 +36,12 @@ if [ -d "$HOME/.config/zsh/functions" ]; then
     done
 fi
 
-# Load PC-specific configuration if it exists.
-# Place machine-local settings (paths, secrets, work-only aliases, etc.) in this file.
-if [ -f "$HOME/.config/zsh/local.zshrc" ]; then
-    source "$HOME/.config/zsh/local.zshrc"
-fi
+# Load every *.zshrc under ~/.config/zsh (sorted by name).
+# - local.zshrc: machine-local settings (paths, secrets, work-only aliases, etc.), not tracked by dotfiles.
+# - wsl.zshrc:   linked by zsh/install.sh only on WSL.
+for rc_file in "$HOME"/.config/zsh/*.zshrc(N); do
+    source "$rc_file"
+done
 
 # Nix
 if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then

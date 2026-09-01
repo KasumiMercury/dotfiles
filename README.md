@@ -71,8 +71,10 @@ cd ~/dotfiles
 `git` と `sheldon` は `command -v nix` が通る環境ではスキップされる。
 これらは home-manager が管理するため。
 
+`~/.zshrc` は `~/.config/zsh/*.zshrc` を名前順にすべて読み込む。
+
 `zsh` の install.sh は `~/.config/zsh/local.zshrc` が無ければ雛形を作る。
-このファイルはリポジトリの管理外で、マシン固有の PATH や alias を書くために `~/.zshrc` から読み込まれる。
+このファイルはリポジトリの管理外で、マシン固有の PATH や alias を書くために使う。
 git も同様に `~/.config/git/local.gitconfig` を include する。
 
 ### 2. `.bin/home-manager.sh`
@@ -90,6 +92,28 @@ nix run home-manager/master -- switch --flake "$HOME/.config/home-manager#<confi
 `sudo` を付けて実行しない。
 `$HOME` の所有者が実行ユーザーと異なるとスクリプトが実行を拒否する。
 `--impure` 評価では `$USER` と `$HOME` がそのまま構成に焼き込まれるため、root で走らせるとホームディレクトリに root 所有のファイルが撒かれる。
+
+### 3. `.bin/wsl.sh`（任意、WSL のみ）
+
+上記のセットアップが済んだあと、WSL でだけ必要に応じて実行する。
+`.bin/install.sh` からは呼ばれない。
+
+```sh
+./.bin/wsl.sh              # Windows ユーザー名は既定の mercu
+./.bin/wsl.sh -u <name>    # Windows ユーザー名を指定
+WIN_USER=<name> ./.bin/wsl.sh
+```
+
+`~/.config/zsh/wsl.zshrc` を生成し、`/etc/wsl.conf` で `appendWindowsPath = false` にしている前提で、次のディレクトリを `$PATH` に追加する（存在するものだけ）。
+
+| コマンド | ディレクトリ |
+| --- | --- |
+| `zed` | `/mnt/c/Users/<name>/AppData/Local/Programs/Zed/bin` |
+| `code` | `/mnt/c/Users/<name>/AppData/Local/Programs/Microsoft VS Code/bin` |
+| `explorer.exe` | `/mnt/c/Windows` |
+
+生成されるファイルはリポジトリの管理外で、再実行すると上書きされる。
+WSL 以外（`$WSL_DISTRO_NAME` が無く `/proc/version` に `microsoft` を含まない環境）ではエラー終了する。
 
 ## home-manager の構成
 
