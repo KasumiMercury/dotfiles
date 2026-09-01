@@ -112,6 +112,13 @@ WIN_USER=<name> ./.bin/wsl.sh
 | `code` | `/mnt/c/Users/<name>/AppData/Local/Programs/Microsoft VS Code/bin` |
 | `explorer.exe` | `/mnt/c/Windows` |
 
+あわせて、WSL interop の確認と復旧用の関数を定義する。
+
+| 関数 | 内容 |
+| --- | --- |
+| `itrc` | `cat /proc/sys/fs/binfmt_misc/WSLInterop` で登録状態を表示する |
+| `itr` | `sudo` で `/proc/sys/fs/binfmt_misc/register` に `WSLInterop` を再登録する |
+
 生成されるファイルはリポジトリの管理外で、再実行すると上書きされる。
 WSL 以外（`$WSL_DISTRO_NAME` が無く `/proc/version` に `microsoft` を含まない環境）ではエラー終了する。
 

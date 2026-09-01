@@ -2,7 +2,8 @@
 # Optional WSL-only setup. Run after .bin/install.sh.
 #
 # Generates ~/.config/zsh/wsl.zshrc, which adds a few Windows-side tools to
-# $PATH for distros with appendWindowsPath = false in /etc/wsl.conf.
+# $PATH for distros with appendWindowsPath = false in /etc/wsl.conf, and
+# defines itrc / itr to check and restore WSL interop.
 # ~/.zshrc sources every ~/.config/zsh/*.zshrc, so nothing else is needed.
 set -ue
 
@@ -89,6 +90,16 @@ for dir in "${wsl_path_dirs[@]}"; do
     fi
 done
 unset dir wsl_path_dirs
+
+# WSL interop (running Windows .exe from WSL) sometimes gets unregistered.
+# itrc : show the current state of the WSLInterop binfmt entry
+# itr  : re-register it (requires sudo)
+itrc() {
+    cat /proc/sys/fs/binfmt_misc/WSLInterop 2>&1
+}
+itr() {
+    sudo sh -c 'echo ":WSLInterop:M::MZ::/init:PF" > /proc/sys/fs/binfmt_misc/register'
+}
 EOF
 } > "$DEST"
 
