@@ -99,6 +99,8 @@ in
   #  /etc/profiles/per-user/mercury/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
+    # sqlite.lua (smart-open.nvim) loads libsqlite3 via FFI.
+    LIBSQLITE = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
   };
 
   programs.git = {
