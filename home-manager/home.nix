@@ -71,6 +71,7 @@ in
     mise
     zip
     carapace
+    yazi
 
     devenv
     devbox
