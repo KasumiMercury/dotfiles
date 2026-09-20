@@ -70,6 +70,7 @@ in
     jq
     mise
     zip
+    carapace
 
     devenv
     devbox
