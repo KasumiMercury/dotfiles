@@ -72,6 +72,7 @@ in
     zip
     carapace
     yazi
+    lsd
 
     devenv
     devbox
