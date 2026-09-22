@@ -6,6 +6,10 @@
   "nix": {
     "enabled": true
   },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
   "minimumReleaseAge": "7 days",
   "internalChecksFilter": "strict",
   "timezone": "Asia/Tokyo"
