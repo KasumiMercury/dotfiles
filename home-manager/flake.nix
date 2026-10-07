@@ -20,7 +20,10 @@
           homeDirectory,
         }:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [ "bws" ];
+          };
 
           # Specify your home configuration modules here, for example,
           # the path to your home.nix.

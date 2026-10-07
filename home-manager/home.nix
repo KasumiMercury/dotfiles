@@ -78,6 +78,9 @@ in
     devbox
 
     gnumake
+
+    bitwarden-cli
+    bws
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
