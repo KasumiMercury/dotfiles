@@ -60,7 +60,7 @@ cd ~/dotfiles
 
 | ディレクトリ | linux | darwin | windows |
 | --- | --- | --- | --- |
-| `zsh` | `~/.zshrc`、`~/.config/zsh/functions/*.zsh` | 同左 | スキップ |
+| `zsh` | `~/.zshrc`、`~/.config/zsh/functions/*.zsh`、`~/.config/zsh/keybind.zshrc` | 同左 | スキップ |
 | `fish` | `~/.config/fish/functions/*.fish` | 同左 | スキップ |
 | `nvim` | `~/.config/nvim` | 同左 | `~/AppData/Local/nvim` |
 | `git` | nix があればスキップ、なければ `~/.config/git/config` | 同左 | `~/.gitconfig` |

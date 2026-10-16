@@ -43,6 +43,11 @@ for src in "$SCRIPT_DIR/functions"/*.zsh; do
 done
 shopt -u nullglob
 
+if ! link_dir "$SCRIPT_DIR/keybind.zshrc" "$HOME/.config/zsh/keybind.zshrc"; then
+	echo "failed to create symbolic link for keybind.zshrc"
+	exit 1
+fi
+
 LOCAL_DIR="$HOME/.config/zsh"
 LOCAL_FILE="$LOCAL_DIR/local.zshrc"
 if [ ! -e "$LOCAL_FILE" ]; then
