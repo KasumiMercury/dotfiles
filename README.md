@@ -34,15 +34,6 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 
 macOS では既定で multi-user インストールになり、Apple Silicon にネイティブ対応する。
 
-### pure prompt
-
-`zsh/.zshrc` が `fpath+=($HOME/.zsh/pure)` を前提にしている。
-pure は Nix の管理外なので、手動で配置する。
-
-```sh
-git clone https://github.com/sindresorhus/pure.git ~/.zsh/pure
-```
-
 ## セットアップ
 
 ```sh

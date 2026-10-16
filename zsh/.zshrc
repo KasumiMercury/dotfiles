@@ -16,10 +16,7 @@ export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
 
-fpath+=($HOME/.zsh/pure)
-autoload -U promptinit; promptinit
 zstyle ':prompt:pure:prompt:success' color green
-prompt pure
 
 export PATH=$PATH:~/.local/bin/
 export PATH=$PATH:~/.nix-profile/bin/
