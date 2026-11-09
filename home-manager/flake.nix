@@ -52,6 +52,10 @@
         mkHome { inherit system username homeDirectory; };
     in
     {
+      packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ] (
+        system: import ./packages.nix nixpkgs.legacyPackages.${system}
+      );
+
       homeConfigurations = {
         # 既存互換（WSL）: 純粋評価で完結する固定構成。
         "mercury" = mkHome {
