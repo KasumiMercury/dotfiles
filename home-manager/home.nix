@@ -17,6 +17,28 @@ let
     preCheck = "export HOME=$TMPDIR";
     nativeCheckInputs = [ pkgs.git ];
   };
+
+  leaf = pkgs.rustPlatform.buildRustPackage {
+    pname = "leaf";
+    version = "1.29.2";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "RivoLink";
+      repo = "leaf";
+      tag = "1.29.2";
+      hash = "sha256-Qj5QfuoXmh+YH3+MrPKmTKjDPAYIOrewJf3LastPJQo=";
+    };
+
+    cargoHash = "sha256-eAPW1VhBEyrQBKeFniKD1RxCdy6p6teAVwnNRBWJ+BA=";
+
+    checkFlags = [ "--skip=tests::render_preview::preview_mode_only_before_shows_content" ];
+
+    nativeBuildInputs = [ pkgs.installShellFiles ];
+
+    postInstall = ''
+      installShellCompletion completions/leaf.{bash,fish,zsh}
+    '';
+  };
 in
 
 {
@@ -62,6 +84,7 @@ in
     gh
     ghq
     gwq
+    leaf
     fzf
     go-task
     lefthook
