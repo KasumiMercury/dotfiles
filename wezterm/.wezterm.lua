@@ -19,6 +19,8 @@ config.use_ime = true
 
 config.default_prog = { 'pwsh.exe' }
 
+config.clean_exit_codes = { 0, 1 }
+
 config.launch_menu = {
 	{
 		label = 'Git Bash',
