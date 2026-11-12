@@ -108,11 +108,33 @@ fi
 # It is harmless for the fixed 'mercury' configuration, so it is always passed.
 SWITCH_CMD="nix run home-manager/master -- switch --flake \"${HM_CONFIG_DIR}#${HM_CONFIG}\" --impure"
 
+fix_eim_python_envs() {
+    local eim_bin idf_json new_python idf_path venv_python venv_home
+    eim_bin="$(command -v eim || true)"
+    idf_json="$HOME/.espressif/tools/eim_idf.json"
+    if [ -z "$eim_bin" ] || [ ! -f "$idf_json" ] || ! command -v jq >/dev/null 2>&1; then
+        return 0
+    fi
+    new_python="$(grep -o '/nix/store/[^/]*-python3-[^/]*-env/bin' "$eim_bin" | head -n 1 || true)"
+    if [ -z "$new_python" ]; then
+        return 0
+    fi
+    jq -r '.idfInstalled[] | select(.python != null) | [.path, .python] | @tsv' "$idf_json" |
+        while IFS="$(printf '\t')" read -r idf_path venv_python; do
+            venv_home="$(sed -n 's/^home = //p' "$(dirname "$(dirname "$venv_python")")/pyvenv.cfg" 2>/dev/null || true)"
+            if [ "$venv_home" != "$new_python" ]; then
+                echo "Fixing ESP-IDF python env: $idf_path"
+                eim fix -p "$idf_path" </dev/null || echo "Warning: 'eim fix -p $idf_path' failed."
+            fi
+        done
+}
+
 echo ""
 read -p "Run 'home-manager switch' now? (y/N): " answer
 answer_lower="$(printf '%s' "${answer:-}" | tr '[:upper:]' '[:lower:]')"
 if [ "$answer_lower" = "y" ]; then
     nix run home-manager/master -- switch --flake "${HM_CONFIG_DIR}#${HM_CONFIG}" --impure
+    fix_eim_python_envs
 else
     echo "Skipped. To apply later, run:"
     echo "  ${SWITCH_CMD}"

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (import ./packages.nix pkgs) gwq leaf;
+  inherit (import ./packages.nix pkgs) gwq leaf eim;
 in
 
 {
@@ -48,6 +48,7 @@ in
     ghq
     gwq
     leaf
+    eim
     fzf
     go-task
     lefthook
