@@ -85,7 +85,7 @@ pkgs: {
         --zsh <($out/bin/eim completions zsh) \
         --fish <($out/bin/eim completions fish)
       wrapProgram $out/bin/eim \
-        --prefix PATH : ${pkgs.lib.makeBinPath [ (pkgs.python313.withPackages (ps: [ ps.pip ])) ]} \
+        --prefix PATH : ${pkgs.lib.makeBinPath [ (pkgs.python314.withPackages (ps: [ ps.pip ])) ]} \
         --suffix PATH : ${
           pkgs.lib.makeBinPath (
             with pkgs;
