@@ -32,4 +32,5 @@ venv は今の wrapper の Python に張り直され、Python の依存も入れ
 
 ## 予防
 
-nixpkgs を更新して switch したら、GC の前に `eim fix` を一度実行しておく。
+`.bin/home-manager.sh` で switch すると、venv の参照先が新しい eim の Python と違うときに `eim fix` が自動で実行される。
+ほかの方法で switch したときは、GC（`nh clean` を含む）の前に `eim fix` を一度実行しておく。
