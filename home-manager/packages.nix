@@ -18,16 +18,16 @@ pkgs: {
 
   leaf = pkgs.rustPlatform.buildRustPackage rec {
     pname = "leaf";
-    version = "1.29.2";
+    version = "1.29.3";
 
     src = pkgs.fetchFromGitHub {
       owner = "RivoLink";
       repo = "leaf";
       tag = version;
-      hash = "sha256-Qj5QfuoXmh+YH3+MrPKmTKjDPAYIOrewJf3LastPJQo=";
+      hash = "sha256-/gV1jzY5fo0DzCCTD8MKb9U0CCUpSC1EsnmTKjJGZAE=";
     };
 
-    cargoHash = "sha256-eAPW1VhBEyrQBKeFniKD1RxCdy6p6teAVwnNRBWJ+BA=";
+    cargoHash = "sha256-cxi+nM5dQ5gF5aKmbq+SO+pF7lBmypZaPw+tVmpYYMs=";
 
     checkFlags = [ "--skip=tests::render_preview::preview_mode_only_before_shows_content" ];
 
