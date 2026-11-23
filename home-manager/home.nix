@@ -95,6 +95,8 @@ in
     LIBSQLITE = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
   };
 
+  home.sessionPath = [ "$HOME/.cargo/bin" ];
+
   programs.git = {
     enable = true;
     includes = [
