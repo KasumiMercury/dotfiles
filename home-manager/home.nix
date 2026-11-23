@@ -35,8 +35,7 @@ in
     sqlite
     ripgrep
     fd
-    cargo
-    rustc
+    rustup
 
     deno
 
