@@ -35,8 +35,7 @@ in
     sqlite
     ripgrep
     fd
-    cargo
-    rustc
+    rustup
 
     deno
 
@@ -95,6 +94,8 @@ in
     # sqlite.lua (smart-open.nvim) loads libsqlite3 via FFI.
     LIBSQLITE = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
   };
+
+  home.sessionPath = [ "$HOME/.cargo/bin" ];
 
   programs.git = {
     enable = true;
