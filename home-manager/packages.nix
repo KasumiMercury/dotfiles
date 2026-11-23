@@ -40,18 +40,18 @@ pkgs: {
 
   eim = pkgs.rustPlatform.buildRustPackage rec {
     pname = "eim";
-    version = "0.21.1";
+    version = "0.22.0";
 
     src = pkgs.fetchFromGitHub {
       owner = "espressif";
       repo = "idf-im-ui";
       tag = "v${version}";
-      hash = "sha256-0CfnAInsC0ZeV5+gtvFBm15VNrrSu7fwETpzNPDxr5A=";
+      hash = "sha256-ARE+HamRSSsZ6oEJmr9L8FgxaGJhXl4HCLPvex7ZE8o=";
     };
 
     sourceRoot = "${src.name}/src-tauri";
 
-    cargoHash = "sha256-fzTzlVMm5hNz0EeEBXtNcXQLBD+2xA5U5j//pr+1MMg=";
+    cargoHash = "sha256-Tz5dg1T1pj0xdY4JU0vFcMGyj/Icf2MQLZjFSRuGJvE=";
 
     buildNoDefaultFeatures = true;
     buildFeatures = [ "cli" ];
