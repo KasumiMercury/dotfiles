@@ -9,7 +9,7 @@ return {
 		ts.install({
 		    "c", "lua", "vim", "vimdoc", "query",
 		    "markdown", "markdown_inline",
-		    "go", "gomod", "gotmpl", "gowork", "rust",
+		    "go", "gomod", "gotmpl", "gowork", "rust", "haskell",
 		})
 		vim.api.nvim_create_autocmd('FileType', {
 		    callback = function(event)
