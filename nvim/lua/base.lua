@@ -11,6 +11,7 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.wrap = true
 vim.opt.clipboard = "unnamedplus"
+vim.o.exrc = true
 vim.g.mapleader = "\\ "
 
 -- for auto-session
