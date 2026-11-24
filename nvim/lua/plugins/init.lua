@@ -42,6 +42,7 @@ require('lazy').setup({
 
 	-- 言語特化
 	require('plugins.lang.rust'),
+	require('plugins.lang.tidal'),
 
 	-- git
 	require('plugins.git.gin'),

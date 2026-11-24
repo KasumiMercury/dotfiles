@@ -8,6 +8,8 @@ vim.diagnostic.config({
 	severity_sort = true,
 })
 
+vim.lsp.enable('hls')
+
 -- LSPアタッチ時のキーマッピング
 vim.api.nvim_create_autocmd('lspattach', {
 	callback = function(ctx)
