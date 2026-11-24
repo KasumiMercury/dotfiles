@@ -38,6 +38,7 @@ in
     ripgrep
     fd
     rustup
+    kache
 
     deno
 
@@ -95,6 +96,7 @@ in
   home.sessionVariables = {
     # sqlite.lua (smart-open.nvim) loads libsqlite3 via FFI.
     LIBSQLITE = "${pkgs.sqlite.out}/lib/libsqlite3${pkgs.stdenv.hostPlatform.extensions.sharedLibrary}";
+    RUSTC_WRAPPER = "${pkgs.kache}/bin/kache";
   };
 
   home.sessionPath = [ "$HOME/.cargo/bin" ];
