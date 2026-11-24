@@ -29,6 +29,8 @@ eval "$(sheldon source)"
 
 eval "$(zoxide init zsh)"
 
+source <(kache completions zsh)
+
 setopt no_beep
 
 # Load custom shell functions.
