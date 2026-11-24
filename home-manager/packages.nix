@@ -31,7 +31,11 @@ pkgs: {
 
     checkFlags = [ "--skip=tests::render_preview::preview_mode_only_before_shows_content" ];
 
-    nativeBuildInputs = [ pkgs.installShellFiles ];
+    nativeBuildInputs = [
+      pkgs.installShellFiles
+      pkgs.pkg-config
+    ];
+    buildInputs = [ pkgs.oniguruma ];
 
     postInstall = ''
       installShellCompletion completions/leaf.{bash,fish,zsh}
