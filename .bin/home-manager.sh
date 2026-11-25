@@ -129,12 +129,33 @@ fix_eim_python_envs() {
         done
 }
 
+fix_elan_toolchains() {
+    local elan_bin closure tc stale name
+    [ "$uname_s" = "Linux" ] || return 0
+    elan_bin="$(command -v elan || true)"
+    if [ -z "$elan_bin" ] || ! command -v nix-store >/dev/null 2>&1; then
+        return 0
+    fi
+    closure="$(nix-store -qR "$(readlink -f "$elan_bin")")"
+    for tc in "${ELAN_HOME:-$HOME/.elan}"/toolchains/*; do
+        [ -d "$tc" ] && [ ! -L "$tc" ] || continue
+        stale="$(grep -aoh '/nix/store/[a-z0-9]\{32\}-[^/"[:space:]]*' "$tc"/bin/* 2>/dev/null |
+            sort -u | grep -vxF -f <(printf '%s\n' "$closure") || true)"
+        [ -n "$stale" ] || continue
+        name="$(basename "$tc" | sed 's/---/:/g; s/--/\//g')"
+        echo "Reinstalling Lean toolchain with stale Nix store references: $name"
+        { elan toolchain uninstall "$name" && elan toolchain install "$name"; } </dev/null ||
+            echo "Warning: reinstalling Lean toolchain $name failed."
+    done
+}
+
 echo ""
 read -p "Run 'home-manager switch' now? (y/N): " answer
 answer_lower="$(printf '%s' "${answer:-}" | tr '[:upper:]' '[:lower:]')"
 if [ "$answer_lower" = "y" ]; then
     nix run home-manager/master -- switch --flake "${HM_CONFIG_DIR}#${HM_CONFIG}" --impure
     fix_eim_python_envs
+    fix_elan_toolchains
 else
     echo "Skipped. To apply later, run:"
     echo "  ${SWITCH_CMD}"
