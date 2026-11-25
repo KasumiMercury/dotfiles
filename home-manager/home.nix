@@ -5,7 +5,10 @@ let
 in
 
 {
-  imports = [ ./haskell.nix ];
+  imports = [
+    ./haskell.nix
+    ./lean.nix
+  ];
 
   # home.username / home.homeDirectory are injected from flake.nix
   # so that this module can be shared across systems and users.

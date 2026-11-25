@@ -13,6 +13,7 @@ vim.opt.wrap = true
 vim.opt.clipboard = "unnamedplus"
 vim.o.exrc = true
 vim.g.mapleader = "\\ "
+vim.g.maplocalleader = ","
 
 -- for auto-session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
